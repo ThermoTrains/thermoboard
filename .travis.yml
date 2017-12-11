@@ -6,12 +6,16 @@ node_js: "7"
 install: "npm install"
 script: "npm run build"
 
-after_success:
-  - 'while read file; do name="${file#dist/}"; curl -u "$FTP_USER:$FTP_PASSWORD" --ftp-create-dirs -T "$file" ftp://sebastianhaeni.ch/"$name"; done < <( find dist -type f )'
+deploy:
+  provider: script
+  script:
+    - 'while read file; do name="${file#dist/}"; curl -u "$FTP_USER:$FTP_PASSWORD" --ftp-create-dirs -T "$file" ftp://sebastianhaeni.ch/"$name"; done < <( find dist -type f )'
+  on:
+    branch: master
 
-# TODO
-#notifications:
-#  webhooks:
-#    urls:
-#      - http://thermoboard.sebastianhaeni.ch/api/migrate
-#    on_success: always
+notifications:
+  webhooks:
+    urls:
+      - http://thermoboard.sebastianhaeni.ch/api/migrate
+    on_success: always
+    on_failure: never
