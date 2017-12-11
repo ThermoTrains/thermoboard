@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DocumentNode } from 'graphql';
+
+const UserQuery: DocumentNode = gql`{
+  User {
+    email
+  }
+}
+`;
 
 @Component({
   selector: 'thermo-root',
@@ -8,15 +16,16 @@ import gql from 'graphql-tag';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'thermo';
+  private loading: boolean = false;
+  private users: any[] = null;
 
   constructor(private apollo: Apollo) {
-    let observable = apollo.query({query: gql`{
-  User {
-    email
-  }
-}
-`});
-    observable.toPromise().then(console.log);
+    this.apollo.watchQuery<any>({
+      query: UserQuery
+    }).valueChanges
+      .subscribe(({ data }) => {
+        this.loading = data.loading;
+        this.users = data.User;
+      });
   }
 }
