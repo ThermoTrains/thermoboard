@@ -4,14 +4,9 @@ php: "7.1"
 node_js: "7"
 
 install: "npm install"
-script: "npm run build"
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: scripts/deploy.sh
-  on:
-    branch: master
+script:
+  - "npm run build"
+  - scripts/deploy.sh
 
 notifications:
   webhooks:
