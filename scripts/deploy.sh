@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ev # exit when command fails; print each line executed
 while read file;
 do
   name="${file#dist/}";
