@@ -10,5 +10,4 @@ git init
 git add -A
 git commit -m "deploy"
 git remote add origin https://$GIT_USERNAME:$GIT_PASSWORD@thermoboard.sebastianhaeni.ch/plesk-git/thermoboard.git
-git pull -s recursive -X ours --commit origin master
-git push -u origin master
+git push --force origin master
