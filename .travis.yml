@@ -6,13 +6,10 @@ node_js: "7"
 install: "npm install"
 script: "npm run build"
 
-# TODO:
-# recursively remove api/storage
-# recursively remove api/bootstrap/cache
-# copy dist/ to FTP server
-#after_success:
-#  - "curl --ftp-create-dirs -T uploadfilename -u $FTP_USER:$FTP_PASSWORD ftp://sitename.com/directory/myfile"
+after_success:
+  - 'while read file; do name="${file#dist/}"; curl -u "$FTP_USER:$FTP_PASSWORD" --ftp-create-dirs -T "$file" ftp://sebastianhaeni.ch/"$name"; done < <( find dist -type f )'
 
+# TODO
 #notifications:
 #  webhooks:
 #    urls:

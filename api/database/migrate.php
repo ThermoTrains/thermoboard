@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Artisan;
 
-$exitCode = Artisan::call('migrate', [
+echo "Clearing cache";
+Artisan::call('cache:clear');
+
+echo "Migrating database";
+Artisan::call('migrate', [
   '--force' => true,
 ]);
 
-echo $exitCode;
+echo "Destroying itself in 1, 2, 3 boom!!!";
 
 // delete itself so nobody can execute this again until the the next deployment
 unlink(__FILE__);
