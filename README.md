@@ -29,5 +29,3 @@ PHP Composer requirements:
 * Start API: `npm run start:api`
 * Start Frontend: `npm run start:frontend`
 * Build: `npm run build`
-* Build API: `npm run build:api`
-* Build Frontend: `npm run build:frontend`

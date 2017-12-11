@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ev # exit when command fails; print each line executed
 
+cp -R api/ dist/api/
+
 cd dist/
 
 # remove .gitignore, we want to deploy everything

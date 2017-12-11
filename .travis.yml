@@ -3,17 +3,14 @@ language: php
 php: "7.1"
 node_js: "7"
 
-before_install:
+install:
+  - npm install
+  - cd api
+  - composer install --optimize-autoloader
+
+before_script:
   - chmod +x scripts/deploy.sh
 
-install: "npm install"
 script:
-  - "npm run build"
+  - npm run build
   - scripts/deploy.sh
-
-notifications:
-  webhooks:
-    urls:
-      - http://thermoboard.sebastianhaeni.ch/api/migrate
-    on_success: always
-    on_failure: never
