@@ -1,7 +1,14 @@
 #!/bin/bash
 set -ev # exit when command fails; print each line executed
-while read file;
-do
-  name="${file#dist/}";
-  curl -u "$FTP_USER:$FTP_PASSWORD" --ftp-create-dirs -T "$file" ftp://sebastianhaeni.ch/"$name";
-done < <( find dist -type f )
+
+cd dist/
+
+# remove .gitignore, we want to deploy everything
+find . -type f -name ".gitignore" -delete
+
+git init
+git add -A
+git commit -m "deploy"
+git remote add origin https://$GIT_USERNAME:$GIT_PASSWORD@thermoboard.sebastianhaeni.ch/plesk-git/thermoboard.git
+git pull -s recursive -X ours --commit origin master
+git push -u origin master

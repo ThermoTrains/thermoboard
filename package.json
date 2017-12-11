@@ -12,7 +12,7 @@
     "prebuild:api": "cd api && composer install --optimize-autoloader",
     "build:api": "npm run build:api:copy-source && npm run build:api:copy-storage && npm run build:api:copy-vendor",
     "build:api:copy-source": "copyfiles api/app/** api/bootstrap/app.php api/config/** api/database/migrations/** api/database/migrate.php api/routes/** api/.htaccess api/index.php dist",
-    "build:api:copy-storage": "copyfiles api/**/.gitignore dist",
+    "build:api:copy-storage": "copyfiles api/**/.gitkeep dist",
     "build:api:copy-vendor": "copyfiles api/vendor/** dist",
     "test": "ng test",
     "lint": "ng lint",
