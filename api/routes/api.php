@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,5 +12,12 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/migrate', function () {
-  include(__DIR__ . '/../database/migrate.php');
+  $migrationScript = __DIR__ . '/../database/migrate.php';
+
+  if (!file_exists($migrationScript)) {
+    echo "Migration already executed";
+    return;
+  }
+
+  include($migrationScript);
 });

@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Artisan;
 
-echo "Clearing cache";
+echo "Clearing cache\n";
 Artisan::call('cache:clear');
 
-echo "Migrating database";
+echo "Migrating database\n";
 Artisan::call('migrate', [
   '--force' => true,
 ]);
