@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/migrate', function () {
-  $migrationScript = __DIR__ . '/../database/migrate.php';
-
-  if (!file_exists($migrationScript)) {
-    echo "Migration already executed";
-    return;
-  }
-
-  include($migrationScript);
+Route::get('/dummy', function () {
+  //
 });

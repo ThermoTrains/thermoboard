@@ -15,10 +15,3 @@ before_script:
 script:
   - npm run build
   - scripts/deploy.sh
-
-notifications:
-  webhooks:
-    urls:
-      - http://thermoboard.sebastianhaeni.ch/api/migrate
-    on_success: always
-    on_failure: never
