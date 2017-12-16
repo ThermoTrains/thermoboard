@@ -13,5 +13,8 @@ before_script:
   - chmod +x scripts/deploy.sh
 
 script:
+  - npm run lint
+  #- npm run test
+  #- npm run e2e
   - npm run build
   - scripts/deploy.sh
