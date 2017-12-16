@@ -12,7 +12,7 @@ class UserQuery extends Query
 {
     protected $attributes = [
         'name' => 'UserQuery',
-        'description' => 'A query'
+        'description' => 'Get users'
     ];
 
     public function type()
@@ -32,10 +32,12 @@ class UserQuery extends Query
     {
         if (isset($args['id'])) {
             return User::where('id', $args['id'])->get();
-        } else if (isset($args['email'])) {
-            return User::where('email', $args['email'])->get();
-        } else {
-            return User::all();
         }
+
+        if (isset($args['email'])) {
+            return User::where('email', $args['email'])->get();
+        }
+
+        return User::all();
     }
 }

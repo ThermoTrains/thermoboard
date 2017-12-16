@@ -119,7 +119,11 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
+                'Controller' => App\GraphQL\Query\ControllerQuery::class,
+                'Entity' => App\GraphQL\Query\EntityQuery::class,
+                'Record' => App\GraphQL\Query\RecordQuery::class,
                 'User' => App\GraphQL\Query\UserQuery::class,
+                'Sensor' => App\GraphQL\Query\SensorQuery::class,
             ],
             'mutation' => [
 
@@ -144,7 +148,20 @@ return [
      * ]
      */
     'types' => [
+        // Types
+        'Controller' => App\GraphQL\Type\ControllerType::class,
+        'EntityRecord' => App\GraphQL\Type\EntityRecordType::class,
+        'Entity' => App\GraphQL\Type\EntityType::class,
+        'EntityKind' => App\GraphQL\Type\EntityKindType::class,
+        'Place' => App\GraphQL\Type\PlaceType::class,
+        'Record' => App\GraphQL\Type\RecordType::class,
+        'Value' => App\GraphQL\Type\ValueType::class,
+        'Sensor' => App\GraphQL\Type\SensorType::class,
         'User' => App\GraphQL\Type\UserType::class,
+
+        // Enums
+        'EntityCategory' => App\GraphQL\Enums\EntityCategoryEnum::class,
+        'ValueType' => App\GraphQL\Enums\ValueTypeEnum::class,
     ],
 
     /*
