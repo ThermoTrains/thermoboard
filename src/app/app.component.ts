@@ -16,8 +16,8 @@ const UserQuery: DocumentNode = gql`{
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private loading = false;
-  private users: any[] = null;
+  loading = false;
+  users: any[] = null;
 
   constructor(private apollo: Apollo) {
     this.apollo.watchQuery<any>({
