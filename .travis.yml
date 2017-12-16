@@ -6,7 +6,7 @@ node_js: "7"
 install:
   - npm install
   - cd api
-  - composer install --optimize-autoloader
+  - composer install --optimize-autoloader --no-dev
   - cd ..
 
 before_script:
