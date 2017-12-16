@@ -7,7 +7,7 @@
     "start": "concurrently \"npm run start:api\" \"npm run start:frontend\"",
     "start:api": "php -S 127.0.0.1:8080 -t api",
     "start:frontend": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build -prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
