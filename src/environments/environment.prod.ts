@@ -1,3 +1,9 @@
+const packageJson = require('../../package.json');
+
 export const environment = {
-  production: true
+  appName: 'Thermoboard',
+  production: true,
+  versions: {
+    app: packageJson.version,
+  }
 };

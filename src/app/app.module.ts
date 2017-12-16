@@ -1,37 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { Apollo, ApolloModule } from 'apollo-angular';
-import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { LoginComponent } from './login/login.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { StaticModule } from '@app/static/static.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NotFoundComponent
-  ],
   imports: [
+    // Angular
+    BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule, // provides HttpClient for HttpLink
-    ApolloModule,
-    HttpLinkModule
+
+    // Core & Shared
+    CoreModule,
+    SharedModule,
+
+    // Pages
+    StaticModule,
+
+    // App
+    AppRoutingModule,
   ],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(apollo: Apollo,
-              httpLink: HttpLink) {
-    apollo.create({
-      link: httpLink.create({
-        uri: '/api/graphql'
-      }),
-      cache: new InMemoryCache()
-    });
-  }
 }
