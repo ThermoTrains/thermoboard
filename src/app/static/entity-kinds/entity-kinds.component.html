@@ -1,3 +1,22 @@
-<p>
-  entity-kinds works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="main-heading">Entity Kinds</h1>
+    </div>
+  </div>
+  <div class="row align-items-end">
+    <div class="col-md-6 col-lg-4"
+         *ngFor="let entityKind of entityKinds"
+         [ngClass]="animateOnRouteEnter">
+      <mat-card>
+        <mat-card-title>{{entityKind.name}}</mat-card-title>
+        <mat-card-subtitle>
+          {{entityKind.manufacturer}}
+        </mat-card-subtitle>
+        <mat-card-actions>
+          <button mat-button>View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

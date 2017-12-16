@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatMenuModule,
     MatIconModule,
+    MatTableModule,
     MatTooltipModule,
   ],
   declarations: [],
@@ -55,6 +57,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
     MatTooltipModule,
   ]
 })

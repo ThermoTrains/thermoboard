@@ -13,13 +13,13 @@
   <div class="wrapper">
 
     <mat-toolbar color="primary">
-      <button mat-icon-button class="hidden-md-up" (click)="sidenav.open()">
+      <button mat-icon-button class="d-block d-md-none" (click)="sidenav.open()">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span routerLink="" class="branding spacer hidden-sm-down">Thermoboard</span>
+      <span routerLink="" class="branding spacer">Thermoboard</span>
 
-      <span class="hidden-sm-down">
+      <span class="d-none d-md-block">
         <button mat-button
                 class="nav-button"
                 *ngFor="let item of navigation"

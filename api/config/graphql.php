@@ -121,6 +121,7 @@ return [
             'query' => [
                 'Controller' => App\GraphQL\Query\ControllerQuery::class,
                 'Entity' => App\GraphQL\Query\EntityQuery::class,
+                'EntityKind' => App\GraphQL\Query\EntityKindQuery::class,
                 'Record' => App\GraphQL\Query\RecordQuery::class,
                 'User' => App\GraphQL\Query\UserQuery::class,
                 'Sensor' => App\GraphQL\Query\SensorQuery::class,

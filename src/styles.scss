@@ -6,3 +6,11 @@
 @import '../node_modules/bootstrap/scss/utilities';
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.container {
+  margin-top: 20px;
+}
+
+.main-heading {
+  margin: 0 0 20px 0;
+}
