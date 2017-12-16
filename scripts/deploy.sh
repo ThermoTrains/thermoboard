@@ -10,6 +10,6 @@ find . -type f -name ".gitignore" -delete
 
 git init
 git add -A
-git commit -m "deploy"
+git commit -m "deploy" > /dev/null
 git remote add origin https://$GIT_USERNAME:$GIT_PASSWORD@thermoboard.sebastianhaeni.ch/plesk-git/thermoboard.git
 git push --force origin master
