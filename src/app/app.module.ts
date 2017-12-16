@@ -6,10 +6,14 @@ import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 
 import { AppComponent } from './app.component';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,6 @@ export class AppModule {
         uri: '/api/graphql'
       }),
       cache: new InMemoryCache()
-    })
+    });
   }
 }
