@@ -1,15 +1,14 @@
-<div>
-
-  <div class="row" *ngFor="let value of values || []">
-    <div class="col-md-2">
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let value of values || []">
+    <mat-expansion-panel-header>
       {{value.sensor.name}}
-    </div>
-    <div class="col-md-10" [ngSwitch]="value.sensor.produces">
+    </mat-expansion-panel-header>
+
+    <ng-container [ngSwitch]="value.sensor.produces">
       <thermo-value-string *ngSwitchCase="'STRING'" [value]="value"></thermo-value-string>
       <thermo-value-image *ngSwitchCase="'IMAGE'" [value]="value"></thermo-value-image>
       <thermo-value-number *ngSwitchCase="'NUMBER'" [value]="value"></thermo-value-number>
       <thermo-value-temperature *ngSwitchCase="'TEMPERATURE'" [value]="value"></thermo-value-temperature>
-    </div>
-  </div>
-
-</div>
+    </ng-container>
+  </mat-expansion-panel>
+</mat-accordion>

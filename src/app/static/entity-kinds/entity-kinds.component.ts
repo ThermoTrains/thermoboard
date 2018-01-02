@@ -4,7 +4,8 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core/animations/router.transition';
 
-const EntityKindQuery: DocumentNode = gql`{
+const EntityKindQuery: DocumentNode = gql`
+{
   EntityKind {
     id
     name
@@ -32,5 +33,4 @@ export class EntityKindsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

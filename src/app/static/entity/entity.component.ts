@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
+import { ANIMATE_ON_ROUTE_ENTER } from '@app/core/animations/router.transition';
 
 const EntityQuery: DocumentNode = gql`
 query Entity($id: ID!) {
@@ -40,6 +41,7 @@ query Entity($id: ID!) {
 export class EntityComponent implements OnInit, OnDestroy {
   id: string;
   entity: any;
+  animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
   private sub: any;
 
   constructor(private route: ActivatedRoute,

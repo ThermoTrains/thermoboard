@@ -3,25 +3,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule, MatTableModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTableModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ValuesComponent } from './values/values.component';
 import { ValueStringComponent } from './value-string/value-string.component';
 import { ValueTemperatureComponent } from './value-temperature/value-temperature.component';
 import { ValueImageComponent } from './value-image/value-image.component';
 import { ValueNumberComponent } from './value-number/value-number.component';
+import { ValueImageDialogComponent } from './value-image-dialog/value-image-dialog.component';
 
 @NgModule({
   imports: [
@@ -29,53 +31,61 @@ import { ValueNumberComponent } from './value-number/value-number.component';
     FormsModule,
 
     MatButtonModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatChipsModule,
     MatCardModule,
-    MatSidenavModule,
     MatCheckboxModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSidenavModule,
     MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
     MatTooltipModule,
   ],
   declarations: [
+    ValueImageComponent,
+    ValueImageDialogComponent,
+    ValueNumberComponent,
     ValuesComponent,
     ValueStringComponent,
     ValueTemperatureComponent,
-    ValueImageComponent,
-    ValueNumberComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
 
     MatButtonModule,
-    MatMenuModule,
-    MatTabsModule,
-    MatChipsModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
     MatCardModule,
-    MatSidenavModule,
-    MatListModule,
-    MatSelectModule,
-    MatToolbarModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatExpansionModule,
     MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSidenavModule,
     MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
     MatTooltipModule,
 
+    ValueImageComponent,
+    ValueNumberComponent,
     ValuesComponent,
     ValueStringComponent,
     ValueTemperatureComponent,
-    ValueImageComponent,
-    ValueNumberComponent,
+  ],
+  entryComponents: [
+    ValueImageDialogComponent,
   ]
 })
 export class SharedModule {
