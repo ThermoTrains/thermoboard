@@ -31,7 +31,7 @@
     "apollo-angular-link-http": "^1.0.1",
     "apollo-cache-inmemory": "^1.1.4",
     "apollo-client": "^2.1.0",
-    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap": "^4.0.0-beta.3",
     "classlist.js": "^1.1.20150312",
     "concurrently": "^3.5.1",
     "copyfiles": "^1.2.0",
