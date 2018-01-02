@@ -4,6 +4,8 @@ import { DashboardComponent } from '@app/static/dashboard/dashboard.component';
 import { RecordsComponent } from '@app/static/records/records.component';
 import { EntityKindsComponent } from '@app/static/entity-kinds/entity-kinds.component';
 import { EntitiesComponent } from '@app/static/entities/entities.component';
+import { EntityComponent } from '@app/static/entity/entity.component';
+import { RecordComponent } from '@app/static/record/record.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
     path: 'entities',
     component: EntitiesComponent,
     data: { title: 'Entities' }
+  }, {
+    path: 'entity/:id',
+    component: EntityComponent,
+    data: { title: 'Entity' }
+  }, {
+    path: 'record/:id',
+    component: RecordComponent,
+    data: { title: 'Record' }
   }
 ];
 

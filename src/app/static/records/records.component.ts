@@ -4,21 +4,28 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { MatTableDataSource } from '@angular/material';
 
-const RecordQuery: DocumentNode = gql`{
-	Record {
+const RecordQuery: DocumentNode = gql`
+{
+  Record(orderby: ["timestamp", "desc"]) {
+    id
     timestamp
     place {
+      id
       name
-    },
+    }
     entityRecords {
+      id
       entity {
+        id
         kind {
+          id
           name
         }
       }
     }
   }
-}`;
+}
+`;
 
 @Component({
   selector: 'thermo-records',
@@ -26,7 +33,7 @@ const RecordQuery: DocumentNode = gql`{
   styleUrls: ['./records.component.scss']
 })
 export class RecordsComponent implements OnInit {
-  displayedColumns = ['timestamp', 'place', 'kinds'];
+  displayedColumns = ['timestamp', 'place', 'kinds', 'actions'];
   dataSource = new MatTableDataSource();
 
   constructor(private apollo: Apollo) {

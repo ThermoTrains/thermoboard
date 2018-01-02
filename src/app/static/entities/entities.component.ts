@@ -4,7 +4,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { MatTableDataSource } from '@angular/material';
 
-const EntityQuery = gql`query EntityKind($id: ID!) {
+const EntityQuery = gql`
+query EntityKind($id: ID!) {
   EntityKind(id: $id) {
     entities {
       id
@@ -22,7 +23,7 @@ const EntityQuery = gql`query EntityKind($id: ID!) {
   styleUrls: ['./entities.component.scss']
 })
 export class EntitiesComponent implements OnInit {
-  displayedColumns = ['category', 'serial_number', 'exists_since'];
+  displayedColumns = ['category', 'serial_number', 'exists_since', 'actions'];
   dataSource = new MatTableDataSource();
 
   constructor(private route: ActivatedRoute,
@@ -30,7 +31,7 @@ export class EntitiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    const entityKindId = +this.route.snapshot.queryParams.entityKindId;
+    const entityKindId = this.route.snapshot.queryParams.entityKindId;
     this.apollo.watchQuery<any>({
       query: EntityQuery,
       variables: { id: entityKindId }
@@ -41,5 +42,4 @@ export class EntitiesComponent implements OnInit {
       this.dataSource.data = data.EntityKind[0].entities;
     });
   }
-
 }

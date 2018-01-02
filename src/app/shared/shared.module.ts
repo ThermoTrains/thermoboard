@@ -17,6 +17,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material';
+import { ValuesComponent } from './values/values.component';
+import { ValueStringComponent } from './value-string/value-string.component';
+import { ValueTemperatureComponent } from './value-temperature/value-temperature.component';
+import { ValueImageComponent } from './value-image/value-image.component';
+import { ValueNumberComponent } from './value-number/value-number.component';
 
 @NgModule({
   imports: [
@@ -39,7 +44,13 @@ import { MatTableModule } from '@angular/material';
     MatTableModule,
     MatTooltipModule,
   ],
-  declarations: [],
+  declarations: [
+    ValuesComponent,
+    ValueStringComponent,
+    ValueTemperatureComponent,
+    ValueImageComponent,
+    ValueNumberComponent,
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -59,6 +70,12 @@ import { MatTableModule } from '@angular/material';
     MatIconModule,
     MatTableModule,
     MatTooltipModule,
+
+    ValuesComponent,
+    ValueStringComponent,
+    ValueTemperatureComponent,
+    ValueImageComponent,
+    ValueNumberComponent,
   ]
 })
 export class SharedModule {

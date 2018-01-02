@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="main-heading">Entity {{id}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><strong>Category</strong></div>
+    <div class="col-md-10">{{entity && entity.category}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><strong>Serial Number</strong></div>
+    <div class="col-md-10">{{entity && entity.serial_number}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><strong>Exists since</strong></div>
+    <div class="col-md-10">{{entity && entity.exists_since}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><strong>Kind</strong></div>
+    <div class="col-md-10">{{entity && entity.kind && entity.kind.name + ' (' + entity.kind.manufacturer + ')'}}</div>
+  </div>
+
+  <p>
+    TODO list of entity records (same component as in Records)
+  </p>
+</div>
