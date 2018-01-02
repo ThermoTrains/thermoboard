@@ -3,12 +3,11 @@
 namespace App\GraphQL\Query;
 
 use App\Sensor;
-use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class SensorQuery extends Query
+class SensorQuery extends BusinessQuery
 {
     protected $attributes = [
         'name' => 'SensorQuery',
@@ -20,19 +19,8 @@ class SensorQuery extends Query
         return Type::listOf(GraphQL::type('Sensor'));
     }
 
-    public function args()
-    {
-        return [
-            'id' => ['name' => 'id', 'type' => Type::id()]
-        ];
-    }
-
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
-        if (isset($args['id'])) {
-            return Sensor::where('id', $args['îd'])->get();
-        }
-
-        return Sensor::all();
+        return $this->applyArgs(Sensor::query(), $args)->get();
     }
 }

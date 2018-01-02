@@ -3,12 +3,11 @@
 namespace App\GraphQL\Query;
 
 use App\User;
-use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class UserQuery extends Query
+class UserQuery extends BusinessQuery
 {
     protected $attributes = [
         'name' => 'UserQuery',
@@ -20,24 +19,8 @@ class UserQuery extends Query
         return Type::listOf(GraphQL::type('User'));
     }
 
-    public function args()
-    {
-        return [
-            'id' => ['name' => 'id', 'type' => Type::string()],
-            'email' => ['name' => 'email', 'type' => Type::string()]
-        ];
-    }
-
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
-        if (isset($args['id'])) {
-            return User::where('id', $args['id'])->get();
-        }
-
-        if (isset($args['email'])) {
-            return User::where('email', $args['email'])->get();
-        }
-
-        return User::all();
+        return $this->applyArgs(User::query(), $args)->get();
     }
 }

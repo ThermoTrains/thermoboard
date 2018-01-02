@@ -3,12 +3,11 @@
 namespace App\GraphQL\Query;
 
 use App\Record;
-use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class RecordQuery extends Query
+class RecordQuery extends BusinessQuery
 {
     protected $attributes = [
         'name' => 'RecordQuery',
@@ -20,19 +19,8 @@ class RecordQuery extends Query
         return Type::listOf(GraphQL::type('Record'));
     }
 
-    public function args()
-    {
-        return [
-            'id' => ['name' => 'id', 'type' => Type::id()],
-        ];
-    }
-
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
-        if (isset($args['id'])) {
-            return Record::where('id', $args['id'])->get();
-        }
-
-        return Record::all();
+        return $this->applyArgs(Record::query(), $args)->get();
     }
 }

@@ -3,12 +3,11 @@
 namespace App\GraphQL\Query;
 
 use App\Controller;
-use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class ControllerQuery extends Query
+class ControllerQuery extends BusinessQuery
 {
     protected $attributes = [
         'name' => 'ControllerQuery',
@@ -20,19 +19,8 @@ class ControllerQuery extends Query
         return Type::listOf(GraphQL::type('Controller'));
     }
 
-    public function args()
-    {
-        return [
-            'id' => ['name' => 'id', 'type' => Type::id()],
-        ];
-    }
-
     public function resolve($root, $args, $context, ResolveInfo $info)
     {
-        if (isset($args['id'])) {
-            return Controller::where('id', $args['id'])->get();
-        }
-
-        return Controller::all();
+        return $this->applyArgs(Controller::query(), $args)->get();
     }
 }
