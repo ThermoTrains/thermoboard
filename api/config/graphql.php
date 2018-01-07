@@ -122,9 +122,10 @@ return [
                 'Controller' => App\GraphQL\Query\ControllerQuery::class,
                 'Entity' => App\GraphQL\Query\EntityQuery::class,
                 'EntityKind' => App\GraphQL\Query\EntityKindQuery::class,
+                'EntityRecord' => App\GraphQL\Query\EntityRecordQuery::class,
                 'Record' => App\GraphQL\Query\RecordQuery::class,
-                'User' => App\GraphQL\Query\UserQuery::class,
                 'Sensor' => App\GraphQL\Query\SensorQuery::class,
+                'User' => App\GraphQL\Query\UserQuery::class,
             ],
             'mutation' => [
 
@@ -151,14 +152,14 @@ return [
     'types' => [
         // Types
         'Controller' => App\GraphQL\Type\ControllerType::class,
-        'EntityRecord' => App\GraphQL\Type\EntityRecordType::class,
         'Entity' => App\GraphQL\Type\EntityType::class,
         'EntityKind' => App\GraphQL\Type\EntityKindType::class,
+        'EntityRecord' => App\GraphQL\Type\EntityRecordType::class,
         'Place' => App\GraphQL\Type\PlaceType::class,
         'Record' => App\GraphQL\Type\RecordType::class,
-        'Value' => App\GraphQL\Type\ValueType::class,
         'Sensor' => App\GraphQL\Type\SensorType::class,
         'User' => App\GraphQL\Type\UserType::class,
+        'Value' => App\GraphQL\Type\ValueType::class,
 
         // Enums
         'EntityCategory' => App\GraphQL\Enums\EntityCategoryEnum::class,
