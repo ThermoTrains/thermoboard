@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { valueFieldFragment } from '@app/shared/values/values.component';
+import { ANIMATE_ON_ROUTE_ENTER } from '@app/core/animations/router.transition';
 
 const EntityRecordQuery = gql`
 query EntityRecord($id: ID!) {
@@ -45,6 +46,7 @@ ${valueFieldFragment}
 export class EntityRecordComponent implements OnInit, OnDestroy {
   id: string;
   entityRecord: any;
+  animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
   private sub: any;
 
   constructor(private route: ActivatedRoute,
