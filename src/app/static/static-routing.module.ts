@@ -6,6 +6,7 @@ import { EntityKindsComponent } from '@app/static/entity-kinds/entity-kinds.comp
 import { EntitiesComponent } from '@app/static/entities/entities.component';
 import { EntityComponent } from '@app/static/entity/entity.component';
 import { RecordComponent } from '@app/static/record/record.component';
+import { EntityRecordComponent } from '@app/static/entity-record/entity-record.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: 'record/:id',
     component: RecordComponent,
     data: { title: 'Record' }
+  }, {
+    path: 'entity-record/:id',
+    component: EntityRecordComponent,
+    data: { title: 'Entity Record' }
   }
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
@@ -13,7 +13,7 @@ const RecordQuery: DocumentNode = gql`
       id
       name
     }
-    entityRecords {
+    entity_records {
       id
       entity {
         id
@@ -32,7 +32,7 @@ const RecordQuery: DocumentNode = gql`
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.scss']
 })
-export class RecordsComponent implements OnInit {
+export class RecordsComponent {
   displayedColumns = ['timestamp', 'place', 'kinds', 'actions'];
   dataSource = new MatTableDataSource();
 
@@ -44,14 +44,10 @@ export class RecordsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   getKindList(record): string {
-    return record.entityRecords
+    return record.entity_records
       .map(e => e.entity.kind.name)
       .filter((v, i, a) => a.indexOf(v) === i)
       .join(', ');
   }
-
 }

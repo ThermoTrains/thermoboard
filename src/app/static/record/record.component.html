@@ -58,7 +58,32 @@
         <mat-card-content>
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
-              <p>TODO show table of entity records</p>
+              <mat-table #table [dataSource]="entityRecordsDataSource">
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="serialNumber">
+                  <mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.entity.serial_number}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="category">
+                  <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.entity.category}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <a mat-button [routerLink]="['../../entity-record', element.id]" class="float-right">View</a>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
             </mat-card-content>
           </mat-card>
         </mat-card-content>

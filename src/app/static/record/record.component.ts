@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { valueFieldFragment } from '@app/shared/values/values.component';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core/animations/router.transition';
+import { MatTableDataSource } from '@angular/material';
 
 const RecordQuery = gql`
 query Record($id: ID!) {
@@ -19,11 +20,12 @@ query Record($id: ID!) {
     values {
         ...valueFields
     }
-    entityRecords {
+    entity_records {
       id
       name
       entity {
         id
+        serial_number
         category
       }
       values {
@@ -45,6 +47,8 @@ export class RecordComponent implements OnInit, OnDestroy {
   id: string;
   record: any;
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
+  entityRecordsDataSource = new MatTableDataSource();
+  displayedColumns = ['name', 'category', 'serialNumber', 'actions'];
   private sub: any;
 
   constructor(private route: ActivatedRoute,
@@ -60,6 +64,17 @@ export class RecordComponent implements OnInit, OnDestroy {
         variables: { id: this.id }
       }).valueChanges.subscribe(({ data }) => {
         this.record = data.Record[0];
+        this.entityRecordsDataSource.data = this.record.entity_records.slice(0).sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+
+          if (a.name > b.name) {
+            return 1;
+          }
+
+          return 0;
+        });
       });
     });
   }

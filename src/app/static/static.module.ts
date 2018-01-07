@@ -7,10 +7,11 @@ import { EntityKindsComponent } from './entity-kinds/entity-kinds.component';
 import { EntitiesComponent } from './entities/entities.component';
 import { EntityComponent } from './entity/entity.component';
 import { RecordComponent } from './record/record.component';
+import { EntityRecordComponent } from './entity-record/entity-record.component';
 
 @NgModule({
   imports: [SharedModule, StaticRoutingModule],
-  declarations: [DashboardComponent, RecordsComponent, EntityKindsComponent, EntitiesComponent, EntityComponent, RecordComponent]
+  declarations: [DashboardComponent, RecordsComponent, EntityKindsComponent, EntitiesComponent, EntityComponent, RecordComponent, EntityRecordComponent]
 })
 export class StaticModule {
 }

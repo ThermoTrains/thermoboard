@@ -4,6 +4,8 @@ import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { ANIMATE_ON_ROUTE_ENTER } from '@app/core/animations/router.transition';
+import { MatTableDataSource } from '@angular/material';
+import { valueFieldFragment } from '@app/shared/values/values.component';
 
 const EntityQuery: DocumentNode = gql`
 query Entity($id: ID!) {
@@ -24,7 +26,7 @@ query Entity($id: ID!) {
         id
         timestamp
         place {
-        id
+          id
           name
         }
       }
@@ -42,6 +44,8 @@ export class EntityComponent implements OnInit, OnDestroy {
   id: string;
   entity: any;
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
+  displayedColumns = ['timestamp', 'name', 'place', 'actions'];
+  recordsDataSource = new MatTableDataSource();
   private sub: any;
 
   constructor(private route: ActivatedRoute,
@@ -57,6 +61,17 @@ export class EntityComponent implements OnInit, OnDestroy {
         variables: { id: this.id }
       }).valueChanges.subscribe(({ data }) => {
         this.entity = data.Entity[0];
+        this.recordsDataSource.data = this.entity.entity_records.slice(0).sort((a, b) => {
+          if (a.record.timestamp > b.record.timestamp) {
+            return -1;
+          }
+
+          if (a.record.timestamp < b.record.timestamp) {
+            return 1;
+          }
+
+          return 0;
+        });
       });
     });
   }

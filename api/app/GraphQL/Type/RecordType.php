@@ -28,7 +28,7 @@ class RecordType extends BaseType
                 'type' => GraphQL::type('Place'),
                 'description' => 'The place this record was produced'
             ],
-            'entityRecords' => [
+            'entity_records' => [
                 'type' => Type::listOf(GraphQL::type('EntityRecord')),
                 'description' => 'Entity records of this record'
             ],

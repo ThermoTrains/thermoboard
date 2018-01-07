@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="main-heading">Entity Record</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12" [ngClass]="animateOnRouteEnter">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card class="mat-elevation-z0">
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-2"><strong>Timestamp</strong></div>
+                <div class="col-md-10">
+                  <a [routerLink]="['../../record', entityRecord.record.id]" *ngIf="entityRecord">
+                    {{entityRecord.record.timestamp}}
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2"><strong>Serial Number</strong></div>
+                <div class="col-md-10">
+                  <a [routerLink]="['../../entity', entityRecord.entity.id]" *ngIf="entityRecord">
+                    {{entityRecord.entity.serial_number}}
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2"><strong>Kind</strong></div>
+                <div class="col-md-10">
+                  <a routerLink="../../entities"
+                     *ngIf="entityRecord"
+                     [queryParams]="{entityKindId: entityRecord.entity.kind.id}">
+                    {{entityRecord && entityRecord.entity.kind.name +
+                    ' (' + entityRecord.entity.kind.manufacturer + ')'}}
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2"><strong>Category</strong></div>
+                <div class="col-md-10">{{entityRecord && entityRecord.entity.category}}</div>
+              </div>
+              <div class="row">
+                <div class="col-md-2"><strong>Exists since</strong></div>
+                <div class="col-md-10">{{entityRecord && entityRecord.entity.exists_since}}</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12" [ngClass]="animateOnRouteEnter">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Values</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <thermo-values [values]="entityRecord && entityRecord.values"></thermo-values>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
