@@ -1,11 +1,10 @@
 @import 'styles-variables';
 @import 'styles-reset';
+@import 'styles-theme';
 
 @import '../node_modules/bootstrap/scss/bootstrap-reboot';
 @import '../node_modules/bootstrap/scss/bootstrap-grid';
 @import '../node_modules/bootstrap/scss/utilities';
-
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .container {
   margin-top: 20px;
