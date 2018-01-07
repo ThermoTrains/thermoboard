@@ -22,8 +22,7 @@ export class ValueImageDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.canvasRef.nativeElement.width = this.canvasRef.nativeElement.clientWidth;
-    this.canvasRef.nativeElement.height = this.canvasRef.nativeElement.clientHeight;
+    this.initCanvas();
     this.positionY = (this.canvasRef.nativeElement.height - this.imageHeight) / 2;
 
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
@@ -33,13 +32,18 @@ export class ValueImageDialogComponent implements OnInit {
     this.image.src = this.data.image;
   }
 
+  initCanvas() {
+    this.canvasRef.nativeElement.width = this.canvasRef.nativeElement.clientWidth;
+    this.canvasRef.nativeElement.height = this.canvasRef.nativeElement.clientHeight;
+  }
+
   drawImage() {
-    this.ratio = (this.image.width / this.image.height) / 2;
+    this.ratio = this.image.width / this.image.height;
 
     this.ctx.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
 
     this.imageWidth = this.canvasRef.nativeElement.width * this.zoom;
-    this.imageHeight = (this.canvasRef.nativeElement.height / this.ratio) * this.zoom;
+    this.imageHeight = this.imageWidth / this.ratio;
 
     this.positionX = Math.min(this.positionX, 0);
     this.positionY = Math.max(this.positionY, 0);
@@ -101,5 +105,11 @@ export class ValueImageDialogComponent implements OnInit {
   @HostListener('window:mouseup', [])
   onMouseUp() {
     this.dragging = false;
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.initCanvas();
+    this.drawImage();
   }
 }
