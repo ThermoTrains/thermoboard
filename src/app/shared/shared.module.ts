@@ -13,7 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDialogModule, MatTableModule } from '@angular/material';
+import { MatDialogModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -24,6 +24,7 @@ import { ValueTemperatureComponent } from './value-temperature/value-temperature
 import { ValueImageComponent } from './value-image/value-image.component';
 import { ValueNumberComponent } from './value-number/value-number.component';
 import { ValueImageDialogComponent } from './value-image-dialog/value-image-dialog.component';
+import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
 
 @NgModule({
   imports: [
@@ -40,9 +41,11 @@ import { ValueImageDialogComponent } from './value-image-dialog/value-image-dial
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
@@ -55,6 +58,7 @@ import { ValueImageDialogComponent } from './value-image-dialog/value-image-dial
     ValuesComponent,
     ValueStringComponent,
     ValueTemperatureComponent,
+    AddFavoriteComponent,
   ],
   exports: [
     CommonModule,
@@ -70,9 +74,11 @@ import { ValueImageDialogComponent } from './value-image-dialog/value-image-dial
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
@@ -83,6 +89,7 @@ import { ValueImageDialogComponent } from './value-image-dialog/value-image-dial
     ValuesComponent,
     ValueStringComponent,
     ValueTemperatureComponent,
+    AddFavoriteComponent,
   ],
   entryComponents: [
     ValueImageDialogComponent,

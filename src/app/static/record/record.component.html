@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="main-heading">Record</h1>
+      <h1 class="main-heading">
+        <thermo-add-favorite></thermo-add-favorite>
+        Record
+      </h1>
     </div>
   </div>
 
@@ -59,6 +62,15 @@
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
               <mat-table #table [dataSource]="entityRecordsDataSource">
+                <ng-container matColumnDef="favorite">
+                  <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <thermo-add-favorite [url]="router.createUrlTree(['../../entity-record', element.id]).toString()"
+                                         inTable="true">
+                    </thermo-add-favorite>
+                  </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
                   <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
@@ -66,7 +78,11 @@
 
                 <ng-container matColumnDef="serialNumber">
                   <mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.entity.serial_number}}</mat-cell>
+                  <mat-cell *matCellDef="let element">
+                    <a [routerLink]="['../../entity', element.entity.id]">
+                      {{element.entity.serial_number}}
+                    </a>
+                  </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="category">

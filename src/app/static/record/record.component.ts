@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { valueFieldFragment } from '@app/shared/values/values.component';
@@ -48,11 +48,12 @@ export class RecordComponent implements OnInit, OnDestroy {
   record: any;
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
   entityRecordsDataSource = new MatTableDataSource();
-  displayedColumns = ['name', 'category', 'serialNumber', 'actions'];
+  displayedColumns = ['favorite', 'name', 'category', 'serialNumber', 'actions'];
   private sub: any;
 
   constructor(private route: ActivatedRoute,
-              private apollo: Apollo) {
+              private apollo: Apollo,
+              private router: Router) {
   }
 
   ngOnInit() {

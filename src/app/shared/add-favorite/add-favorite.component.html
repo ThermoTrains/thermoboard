@@ -1,0 +1,8 @@
+<span [ngClass]="{ 'heading': !inTable }">
+  <button mat-icon-button (click)="add()" *ngIf="!added">
+    <mat-icon>star_border</mat-icon>
+  </button>
+  <button mat-icon-button (click)="remove()" *ngIf="added">
+    <mat-icon>star</mat-icon>
+  </button>
+</span>

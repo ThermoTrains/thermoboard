@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
@@ -44,12 +44,13 @@ export class EntityComponent implements OnInit, OnDestroy {
   id: string;
   entity: any;
   animateOnRouteEnter = ANIMATE_ON_ROUTE_ENTER;
-  displayedColumns = ['timestamp', 'name', 'place', 'actions'];
+  displayedColumns = ['favorite', 'timestamp', 'name', 'place', 'actions'];
   recordsDataSource = new MatTableDataSource();
   private sub: any;
 
   constructor(private route: ActivatedRoute,
-              private apollo: Apollo) {
+              private apollo: Apollo,
+              private router: Router) {
   }
 
   ngOnInit() {

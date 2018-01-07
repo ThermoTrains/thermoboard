@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 const EntityQuery = gql`
 query EntityKind($id: ID!) {
@@ -22,12 +22,30 @@ query EntityKind($id: ID!) {
   templateUrl: './entities.component.html',
   styleUrls: ['./entities.component.scss']
 })
-export class EntitiesComponent implements OnInit {
-  displayedColumns = ['category', 'serial_number', 'exists_since', 'actions'];
+export class EntitiesComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['favorite', 'category', 'serial_number', 'exists_since', 'actions'];
   dataSource = new MatTableDataSource();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private route: ActivatedRoute,
-              private apollo: Apollo) {
+              private apollo: Apollo,
+              private router: Router) {
+  }
+
+  applyFilter(filterValue: string) {
+    const trimmedValue = filterValue.trim(); // Remove whitespace
+    this.dataSource.filter = trimmedValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  }
+
+  /**
+   * Set the paginator and sort after the view init since this component will
+   * be able to query its view for the initialized paginator and sorter.
+   */
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit() {

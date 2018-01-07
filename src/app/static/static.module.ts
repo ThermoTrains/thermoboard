@@ -10,8 +10,19 @@ import { RecordComponent } from './record/record.component';
 import { EntityRecordComponent } from './entity-record/entity-record.component';
 
 @NgModule({
-  imports: [SharedModule, StaticRoutingModule],
-  declarations: [DashboardComponent, RecordsComponent, EntityKindsComponent, EntitiesComponent, EntityComponent, RecordComponent, EntityRecordComponent]
+  imports: [
+    SharedModule,
+    StaticRoutingModule,
+  ],
+  declarations: [
+    DashboardComponent,
+    RecordsComponent,
+    EntityKindsComponent,
+    EntitiesComponent,
+    EntityComponent,
+    RecordComponent,
+    EntityRecordComponent,
+  ]
 })
 export class StaticModule {
 }

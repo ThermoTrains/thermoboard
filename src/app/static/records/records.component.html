@@ -5,21 +5,34 @@
     </div>
   </div>
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="favorite">
+      <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <thermo-add-favorite [url]="router.createUrlTree(['../record', element.id]).toString()"
+                             inTable="true">
+        </thermo-add-favorite>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="timestamp">
-      <mat-header-cell *matHeaderCellDef>Timestamp</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.timestamp}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="place">
-      <mat-header-cell *matHeaderCellDef>Place</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Place</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.place.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="kinds">
       <mat-header-cell *matHeaderCellDef>Kinds</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{getKindList(element)}}
+        {{element.kinds}}
       </mat-cell>
     </ng-container>
 
@@ -33,4 +46,9 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
 </div>
