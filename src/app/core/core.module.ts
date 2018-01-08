@@ -9,6 +9,7 @@ import { AuthEffects } from './auth/auth.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LocalStorageService } from './local-storage/local-storage.service';
+import { FavoriteService } from '@app/core/favorite/favorite.service';
 
 export function getInitialState() {
   return LocalStorageService.loadInitialState();
@@ -34,7 +35,10 @@ export function getInitialState() {
     EffectsModule.forRoot([AuthEffects])
   ],
   declarations: [],
-  providers: [LocalStorageService]
+  providers: [
+    LocalStorageService,
+    FavoriteService,
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule,

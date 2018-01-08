@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-12">
       <h1 class="main-heading">
-        <thermo-add-favorite></thermo-add-favorite>
+        <thermo-add-favorite *ngIf="record"
+                             [name]="record.timestamp"
+                             type="record">
+        </thermo-add-favorite>
         Record
       </h1>
     </div>
@@ -65,7 +68,9 @@
                 <ng-container matColumnDef="favorite">
                   <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
                   <mat-cell *matCellDef="let element">
-                    <thermo-add-favorite [url]="router.createUrlTree(['../../entity-record', element.id]).toString()"
+                    <thermo-add-favorite [name]="element.name"
+                                         type="entity-record"
+                                         [url]="router.createUrlTree(['../../entity-record', element.id]).toString()"
                                          inTable="true">
                     </thermo-add-favorite>
                   </mat-cell>

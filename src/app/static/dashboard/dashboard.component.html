@@ -62,7 +62,14 @@
         <mat-card-content>
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
-              <p>TODO list favorites</p>
+              <p *ngIf="favoriteService.getFavorites().length === 0">
+                No favorites added yet
+              </p>
+              <mat-nav-list>
+                <a mat-list-item [routerLink]="favorite.url" *ngFor="let favorite of favoriteService.getFavorites()">
+                  {{favorite.type}}: {{favorite.name}}
+                </a>
+              </mat-nav-list>
             </mat-card-content>
           </mat-card>
         </mat-card-content>

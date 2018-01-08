@@ -13,7 +13,9 @@
     <ng-container matColumnDef="favorite">
       <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <thermo-add-favorite [url]="router.createUrlTree(['../entity', element.id]).toString()"
+        <thermo-add-favorite [name]="element.serial_number"
+                             type="entity"
+                             [url]="router.createUrlTree(['../entity', element.id]).toString()"
                              inTable="true">
         </thermo-add-favorite>
       </mat-cell>

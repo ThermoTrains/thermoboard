@@ -4,7 +4,8 @@ const APP_PREFIX = 'THERMO-';
 
 @Injectable()
 export class LocalStorageService {
-  constructor() {}
+  constructor() {
+  }
 
   static loadInitialState() {
     return Object.keys(localStorage).reduce((state: any, storageKey) => {
