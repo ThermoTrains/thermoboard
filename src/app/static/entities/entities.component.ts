@@ -12,6 +12,10 @@ query EntityKind($id: ID!) {
       category
       serial_number
       exists_since
+      kind {
+        id
+        name
+      }
     }
   }
 }
@@ -23,7 +27,7 @@ query EntityKind($id: ID!) {
   styleUrls: ['./entities.component.scss']
 })
 export class EntitiesComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['favorite', 'category', 'serial_number', 'exists_since', 'actions'];
+  displayedColumns = ['favorite', 'category', 'kind', 'serial_number', 'exists_since', 'actions'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
