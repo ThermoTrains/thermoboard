@@ -2,8 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="main-heading">
-        <thermo-add-favorite *ngIf="entity" [name]="entity.serial_number" type="entity"></thermo-add-favorite>
-        Entity {{id}}
+        <thermo-add-favorite [name]="entity && entity.serial_number"
+                             type="entity">
+        </thermo-add-favorite>
+        Entity {{entity && entity.serial_number}}
       </h1>
     </div>
   </div>

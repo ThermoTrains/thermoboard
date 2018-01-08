@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-12">
       <h1 class="main-heading">
-        <thermo-add-favorite *ngIf="record"
-                             [name]="record.timestamp"
+        <thermo-add-favorite [name]="record && record.timestamp"
                              type="record">
         </thermo-add-favorite>
         Record
