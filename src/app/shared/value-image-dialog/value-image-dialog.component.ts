@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { IRON_PALETTE } from '@app/shared/value-image-dialog/color-palette';
-import EXIF = require('exif-js/exif');
-import nearestColor = require('nearest-color');
+import * as EXIF from 'exif-js/exif';
+import * as nearestColor from 'nearest-color';
 
 const colorFinder = nearestColor.from(IRON_PALETTE);
 
