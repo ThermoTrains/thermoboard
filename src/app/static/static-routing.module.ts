@@ -16,27 +16,27 @@ const routes: Routes = [
   }, {
     path: 'entity-kinds',
     component: EntityKindsComponent,
-    data: { title: 'Entity Kinds' }
+    data: { title: 'Fahrzeugtypen' }
   }, {
     path: 'records',
     component: RecordsComponent,
-    data: { title: 'Records' }
+    data: { title: 'Aufnahmen' }
   }, {
     path: 'entities',
     component: EntitiesComponent,
-    data: { title: 'Entities' }
+    data: { title: 'Fahrzeuge' }
   }, {
     path: 'entity/:id',
     component: EntityComponent,
-    data: { title: 'Entity' }
+    data: { title: 'Fahrzeug' }
   }, {
     path: 'record/:id',
     component: RecordComponent,
-    data: { title: 'Record' }
+    data: { title: 'Aufnahme' }
   }, {
     path: 'entity-record/:id',
     component: EntityRecordComponent,
-    data: { title: 'Entity Record' }
+    data: { title: 'Fahrzeugaufnahme' }
   }
 ];
 

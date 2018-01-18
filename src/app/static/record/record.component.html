@@ -5,7 +5,7 @@
         <thermo-add-favorite [name]="record && record.timestamp"
                              type="record">
         </thermo-add-favorite>
-        Record
+        Aufnahme
       </h1>
     </div>
   </div>
@@ -20,11 +20,11 @@
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
               <div class="row">
-                <div class="col-md-2"><strong>Timestamp</strong></div>
-                <div class="col-md-10">{{record && record.timestamp}}</div>
+                <div class="col-md-2"><strong>Zeitstempel</strong></div>
+                <div class="col-md-10">{{record && record.timestamp | date:'dd.MM.yyyy hh:mm'}}</div>
               </div>
               <div class="row" *ngIf="record && record.place">
-                <div class="col-md-2"><strong>Place</strong></div>
+                <div class="col-md-2"><strong>Ort</strong></div>
                 <div class="col-md-10">
                   <a [href]="'https://www.google.com/maps/?q=' + record.place.latitude + ',' + record.place.longitude"
                      target="_blank"
@@ -44,7 +44,7 @@
     <div class="col-12" [ngClass]="animateOnRouteEnter">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Values</mat-card-title>
+          <mat-card-title>Werte</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <thermo-values [values]="record && record.values"></thermo-values>
@@ -57,7 +57,7 @@
     <div class="col-12" [ngClass]="animateOnRouteEnter">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Entity Records</mat-card-title>
+          <mat-card-title>Fahrzeugaufnahmen</mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
@@ -65,7 +65,7 @@
             <mat-card-content>
               <mat-table #table [dataSource]="entityRecordsDataSource">
                 <ng-container matColumnDef="favorite">
-                  <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>Favorit</mat-header-cell>
                   <mat-cell *matCellDef="let element">
                     <thermo-add-favorite [name]="element.name"
                                          type="entity-record"
@@ -81,7 +81,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="serialNumber">
-                  <mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>Seriennummer</mat-header-cell>
                   <mat-cell *matCellDef="let element">
                     <a [routerLink]="['../../entity', element.entity.id]">
                       {{element.entity.serial_number}}
@@ -90,14 +90,14 @@
                 </ng-container>
 
                 <ng-container matColumnDef="category">
-                  <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.entity.category}}</mat-cell>
+                  <mat-header-cell *matHeaderCellDef>Kategorie</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.entity.category | category}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef></mat-header-cell>
                   <mat-cell *matCellDef="let element">
-                    <a mat-button [routerLink]="['../../entity-record', element.id]" class="float-right">View</a>
+                    <a mat-button [routerLink]="['../../entity-record', element.id]" class="float-right">Ansehen</a>
                   </mat-cell>
                 </ng-container>
 

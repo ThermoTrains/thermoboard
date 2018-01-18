@@ -22,8 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   year = new Date().getFullYear();
   navigation = [
     { link: 'dashboard', label: 'Dashboard' },
-    { link: 'entity-kinds', label: 'Entity Kinds' },
-    { link: 'records', label: 'Records' }
+    { link: 'entity-kinds', label: 'Fahrzeugtypen' },
+    { link: 'records', label: 'Aufnahmen' }
   ];
   navigationSideMenu = [
     ...this.navigation,

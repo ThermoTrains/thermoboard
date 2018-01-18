@@ -5,7 +5,7 @@
         <thermo-add-favorite [name]="entity && entity.serial_number"
                              type="entity">
         </thermo-add-favorite>
-        Entity {{entity && entity.serial_number}}
+        Fahrzeug {{entity && entity.serial_number}}
       </h1>
     </div>
   </div>
@@ -20,19 +20,19 @@
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
               <div class="row">
-                <div class="col-md-2"><strong>Category</strong></div>
-                <div class="col-md-10">{{entity && entity.category}}</div>
+                <div class="col-md-2"><strong>Kategorie</strong></div>
+                <div class="col-md-10">{{entity && entity.category | category}}</div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Serial Number</strong></div>
+                <div class="col-md-2"><strong>Seriennummer</strong></div>
                 <div class="col-md-10">{{entity && entity.serial_number}}</div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Exists since</strong></div>
-                <div class="col-md-10">{{entity && entity.exists_since}}</div>
+                <div class="col-md-2"><strong>Instandsetzung</strong></div>
+                <div class="col-md-10">{{entity && entity.exists_since | date:'dd.MM.yyyy'}}</div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Kind</strong></div>
+                <div class="col-md-2"><strong>Typ</strong></div>
                 <div class="col-md-10">
                   {{entity && entity.kind && entity.kind.name + ' (' + entity.kind.manufacturer + ')'}}
                 </div>
@@ -48,14 +48,14 @@
     <div class="col-12" [ngClass]="animateOnRouteEnter">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Entity Records</mat-card-title>
+          <mat-card-title>Fahrzeugaufnahmen</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
               <mat-table #table [dataSource]="recordsDataSource">
                 <ng-container matColumnDef="favorite">
-                  <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>Favorit</mat-header-cell>
                   <mat-cell *matCellDef="let element">
                     <thermo-add-favorite [name]="element.name"
                                          type="entity-record"
@@ -66,10 +66,10 @@
                 </ng-container>
 
                 <ng-container matColumnDef="timestamp">
-                  <mat-header-cell *matHeaderCellDef>Timestamp</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>Zeitstempel</mat-header-cell>
                   <mat-cell *matCellDef="let element">
                     <a [routerLink]="['../../record', element.record.id]">
-                      {{element.record.timestamp}}
+                      {{element.record.timestamp | date:'dd.MM.yyyy hh:mm'}}
                     </a>
                   </mat-cell>
                 </ng-container>
@@ -80,14 +80,14 @@
                 </ng-container>
 
                 <ng-container matColumnDef="place">
-                  <mat-header-cell *matHeaderCellDef>Place</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>Ort</mat-header-cell>
                   <mat-cell *matCellDef="let element">{{element.record.place.name}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef></mat-header-cell>
                   <mat-cell *matCellDef="let element">
-                    <a mat-button [routerLink]="['../../entity-record', element.id]" class="float-right">View</a>
+                    <a mat-button [routerLink]="['../../entity-record', element.id]" class="float-right">Ansehen</a>
                   </mat-cell>
                 </ng-container>
 

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="main-heading">Entities</h1>
+      <h1 class="main-heading">Fahrzeuge</h1>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
 
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="favorite">
-      <mat-header-cell *matHeaderCellDef>Favorite</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Favorit</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <thermo-add-favorite [name]="element.serial_number"
                              type="entity"
@@ -22,29 +22,29 @@
     </ng-container>
 
     <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.category}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Kategorie</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.category | category}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="kind">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Kind</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Typ</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.kind.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="serial_number">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Serial Number</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Seriennummer</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.serial_number}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="exists_since">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Exists since</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.exists_since}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Instandsetzung</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.exists_since | date:'dd.MM.yyyy'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <a mat-button [routerLink]="['../entity', element.id]" class="float-right">View</a>
+        <a mat-button [routerLink]="['../entity', element.id]" class="float-right">Ansehen</a>
       </mat-cell>
     </ng-container>
 

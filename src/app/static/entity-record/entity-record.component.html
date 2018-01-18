@@ -5,7 +5,7 @@
         <thermo-add-favorite [name]="entityRecord && entityRecord.name"
                              type="entity-record">
         </thermo-add-favorite>
-        Entity Record
+        Fahrzeugaufnahme
       </h1>
     </div>
   </div>
@@ -20,15 +20,15 @@
           <mat-card class="mat-elevation-z0">
             <mat-card-content>
               <div class="row">
-                <div class="col-md-2"><strong>Timestamp</strong></div>
+                <div class="col-md-2"><strong>Zeitstempel</strong></div>
                 <div class="col-md-10">
                   <a [routerLink]="['../../record', entityRecord.record.id]" *ngIf="entityRecord">
-                    {{entityRecord.record.timestamp}}
+                    {{entityRecord.record.timestamp | date:'dd.MM.yyyy hh:mm'}}
                   </a>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Serial Number</strong></div>
+                <div class="col-md-2"><strong>Seriennummer</strong></div>
                 <div class="col-md-10">
                   <a [routerLink]="['../../entity', entityRecord.entity.id]" *ngIf="entityRecord">
                     {{entityRecord.entity.serial_number}}
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Kind</strong></div>
+                <div class="col-md-2"><strong>Typ</strong></div>
                 <div class="col-md-10">
                   <a routerLink="../../entities"
                      *ngIf="entityRecord"
@@ -47,12 +47,12 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Category</strong></div>
-                <div class="col-md-10">{{entityRecord && entityRecord.entity.category}}</div>
+                <div class="col-md-2"><strong>Kategorie</strong></div>
+                <div class="col-md-10">{{entityRecord && entityRecord.entity.category | category}}</div>
               </div>
               <div class="row">
-                <div class="col-md-2"><strong>Exists since</strong></div>
-                <div class="col-md-10">{{entityRecord && entityRecord.entity.exists_since}}</div>
+                <div class="col-md-2"><strong>Instandsetzung</strong></div>
+                <div class="col-md-10">{{entityRecord && entityRecord.entity.exists_since | date:'dd.MM.yyyy'}}</div>
               </div>
             </mat-card-content>
           </mat-card>
@@ -65,7 +65,7 @@
     <div class="col-12" [ngClass]="animateOnRouteEnter">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Values</mat-card-title>
+          <mat-card-title>Werte</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <thermo-values [values]="entityRecord && entityRecord.values"></thermo-values>
