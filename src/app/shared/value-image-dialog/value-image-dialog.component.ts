@@ -1,5 +1,10 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { IRON_PALETTE } from '@app/shared/value-image-dialog/color-palette';
+import EXIF = require('exif-js/exif');
+import nearestColor = require('nearest-color');
+
+const colorFinder = nearestColor.from(IRON_PALETTE);
 
 @Component({
   selector: 'thermo-value-image-dialog',
@@ -17,19 +22,50 @@ export class ValueImageDialogComponent implements OnInit {
   private imageWidth = 0;
   private imageHeight = 0;
   private ratio = 1;
+  private tooltip = null;
+  private temperatureScale: number = null;
+  private temperatureOffset: number = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
     this.initCanvas();
+
     this.positionY = (this.canvasRef.nativeElement.height - this.imageHeight) / 2;
 
     this.ctx = this.canvasRef.nativeElement.getContext('2d');
     this.image = new Image();
 
-    this.image.onload = this.drawImage.bind(this);
+    this.image.onload = () => {
+      this.drawImage();
+      this.readMetaData();
+    };
+
     this.image.src = this.data.image;
+  }
+
+  private readMetaData() {
+    const that = this;
+    EXIF.getData(this.image as any, function () {
+      const tag = EXIF.getTag(this, 'ImageDescription');
+      if (!tag || !tag.length) {
+        return;
+      }
+
+      const i = tag.indexOf('/');
+
+      if (i <= 0) {
+        return;
+      }
+
+      const strings = tag.split('/');
+
+      (function () {
+        this.temperatureOffset = parseFloat(strings[0]);
+        this.temperatureScale = parseFloat(strings[1]);
+      }).bind(that)();
+    });
   }
 
   initCanvas() {
@@ -57,6 +93,26 @@ export class ValueImageDialogComponent implements OnInit {
     }
 
     this.ctx.drawImage(this.image, this.positionX, this.positionY, this.imageWidth, this.imageHeight);
+
+    if (this.tooltip) {
+      this.drawTooltip();
+    }
+  }
+
+  private drawTooltip() {
+    const backgroundRectWidth = 60;
+    const backgroundRectHeight = 20;
+    const padding = 3;
+    const maxWidth = backgroundRectWidth - (2 * padding);
+
+    this.ctx.save();
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillRect(this.tooltip.x - padding, this.tooltip.y + 16, backgroundRectWidth, backgroundRectHeight);
+    this.ctx.restore();
+    this.ctx.save();
+    this.ctx.font = '16px sans-serif';
+    this.ctx.fillText(this.tooltip.text, this.tooltip.x, this.tooltip.y + 32, maxWidth);
+    this.ctx.restore();
   }
 
   onMousewheel(event: MouseWheelEvent) {
@@ -92,6 +148,10 @@ export class ValueImageDialogComponent implements OnInit {
 
   @HostListener('window:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
+    if (this.canvasRef.nativeElement === event.target) {
+      this.updateTooltip(event);
+    }
+
     if (!this.dragging) {
       return;
     }
@@ -100,6 +160,64 @@ export class ValueImageDialogComponent implements OnInit {
     this.positionY += event.movementY;
 
     this.drawImage();
+  }
+
+  updateTooltip(event: MouseEvent): void {
+    if (!this.temperatureScale || !this.temperatureOffset) {
+      return;
+    }
+
+    const x = event.offsetX;
+    const y = event.offsetY;
+
+    if (x < this.positionX || x > this.positionX + this.imageWidth ||
+      y < this.positionY || y > this.positionY + this.imageHeight) {
+
+      this.tooltip = null;
+      this.drawImage();
+
+      return;
+    }
+
+    const imageData = this.ctx.getImageData(x, y, 1, 1);
+    const color = colorFinder({ r: imageData.data[0], g: imageData.data[1], b: imageData.data[2] });
+    const scale = 1 / this.temperatureScale;
+
+    const value = color.name;
+    const unclamped = (value * scale) + this.temperatureOffset;
+    const celsius = Math.round(this.calculateTemp(unclamped) * 100) / 100;
+
+    this.tooltip = {
+      x,
+      y,
+      text: `${celsius}°C`
+    };
+
+    this.drawImage();
+  }
+
+  /**
+   * Optimized formula to calculate temperature using the following constants:
+   * emissivity = 0.95;
+   * distance = 0;
+   * reflected_temp = 20;
+   * atmospheric_temp = 20;
+   * relative_humidity = 50;
+   * planck_R1 = 16556;
+   * planck_R2 = 0.046952017;
+   * planck_B = 1428;
+   * planck_F = 1;
+   * planck_O = -207;
+   * @param {number} value
+   * @returns {number}
+   */
+  private calculateTemp(value: number): number {
+    // noinspection MagicNumberJS
+    const obj = (value / 0.95 - 154.2268539477985 + -207);
+    const log = Math.log(16556 / (0.046952017 * obj) + 1);
+    const celsius = 1428 / log - 273.15;
+
+    return celsius;
   }
 
   @HostListener('window:mouseup', [])

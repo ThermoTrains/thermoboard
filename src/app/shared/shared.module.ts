@@ -25,6 +25,9 @@ import { ValueImageComponent } from './value-image/value-image.component';
 import { ValueNumberComponent } from './value-number/value-number.component';
 import { ValueImageDialogComponent } from './value-image-dialog/value-image-dialog.component';
 import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
+import { ChartRecordHistogramComponent } from './chart-record-histogram/chart-record-histogram.component';
+import { ChartEntityKindComponent } from './chart-entity-kind/chart-entity-kind.component';
+import { CategoryPipe } from './category/category.pipe';
 
 @NgModule({
   imports: [
@@ -59,6 +62,9 @@ import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
     ValueStringComponent,
     ValueTemperatureComponent,
     AddFavoriteComponent,
+    ChartRecordHistogramComponent,
+    ChartEntityKindComponent,
+    CategoryPipe,
   ],
   exports: [
     CommonModule,
@@ -90,6 +96,9 @@ import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
     ValueStringComponent,
     ValueTemperatureComponent,
     AddFavoriteComponent,
+    ChartRecordHistogramComponent,
+    ChartEntityKindComponent,
+    CategoryPipe,
   ],
   entryComponents: [
     ValueImageDialogComponent,
