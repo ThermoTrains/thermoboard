@@ -49,17 +49,21 @@ export class ValueImageDialogComponent implements OnInit {
     const that = this;
     EXIF.getData(this.image as any, function () {
       const tag = EXIF.getTag(this, 'ImageDescription');
-      if (!tag || !tag.length) {
+      const meta = tag || EXIF.getAllTags(this)[Object.keys(EXIF.getAllTags(this)).filter(key => {
+        return key === undefined;
+      })[0]];
+
+      if (!meta) {
         return;
       }
 
-      const i = tag.indexOf('/');
+      const i = meta.indexOf('/');
 
       if (i <= 0) {
         return;
       }
 
-      const strings = tag.split('/');
+      const strings = meta.split('/');
 
       (function () {
         this.temperatureOffset = parseFloat(strings[0]);
