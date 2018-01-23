@@ -6,7 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./value-string.component.scss']
 })
 export class ValueStringComponent implements OnInit {
-  @Input() value: any;
+  _value: string;
+  @Input() set value(value: any) {
+    if (value && value.string) {
+      console.log(value.string);
+      this._value = value.string.split('\n').join('<br>');
+    } else {
+      this._value = value;
+    }
+  }
+
+  get value() {
+    return this._value;
+  }
 
   constructor() {
   }
