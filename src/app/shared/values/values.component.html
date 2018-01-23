@@ -1,5 +1,5 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let value of _values || []" >
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let value of _values || []">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{value.sensor.name}}
