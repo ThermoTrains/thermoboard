@@ -1,7 +1,19 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let value of values || []">
+  <mat-expansion-panel *ngFor="let value of _values || []" >
     <mat-expansion-panel-header>
-      {{value.sensor.name}}
+      <mat-panel-title>
+        {{value.sensor.name}}
+      </mat-panel-title>
+
+      <mat-panel-description>
+        &nbsp;
+        <ng-container [ngSwitch]="value.sensor.produces">
+          <mat-icon *ngSwitchCase="'STRING'">brightness_5</mat-icon>
+          <mat-icon *ngSwitchCase="'IMAGE'">image</mat-icon>
+          <mat-icon *ngSwitchCase="'NUMBER'">format_list_numbered</mat-icon>
+          <mat-icon *ngSwitchCase="'TEMPERATURE'">whatshot</mat-icon>
+        </ng-container>
+      </mat-panel-description>
     </mat-expansion-panel-header>
 
     <ng-container [ngSwitch]="value.sensor.produces">

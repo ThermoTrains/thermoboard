@@ -9,7 +9,6 @@ export class ValueStringComponent implements OnInit {
   _value: string;
   @Input() set value(value: any) {
     if (value && value.string) {
-      console.log(value.string);
       this._value = value.string.split('\n').join('<br>');
     } else {
       this._value = value;

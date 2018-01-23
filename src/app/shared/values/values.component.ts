@@ -7,7 +7,29 @@ import gql from 'graphql-tag';
   styleUrls: ['./values.component.scss']
 })
 export class ValuesComponent implements OnInit {
-  @Input() values: any[];
+  _values: any[];
+  @Input()
+  set values(values: any[]) {
+    if (values) {
+      this._values = values.slice().sort((a, b) => {
+        if (a.sensor.produces < b.sensor.produces) {
+          return -1;
+        }
+
+        if (a.sensor.produces > b.sensor.produces) {
+          return 1;
+        }
+
+        return 0;
+      });
+    } else {
+      this._values = values;
+    }
+  }
+
+  get values() {
+    return this._values;
+  }
 
   constructor() {
   }
