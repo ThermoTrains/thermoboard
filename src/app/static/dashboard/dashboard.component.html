@@ -12,7 +12,41 @@
           <mat-card-title>Aufnahmen</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <thermo-chart-record-histogram></thermo-chart-record-histogram>
+          <thermo-chart-record-histogram [timestamps]="timestamps"></thermo-chart-record-histogram>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" [ngClass]="animateOnRouteEnter">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Favoriten</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p *ngIf="favorites.length === 0">
+            No favorites added yet
+          </p>
+          <mat-nav-list>
+            <a mat-list-item [routerLink]="favorite.url" *ngFor="let favorite of favorites">
+              <span [ngSwitch]="favorite.type">
+                <span *ngSwitchCase="'record'">Aufnahme {{favorite.name | date:'dd.MM.yyyy hh:mm'}}</span>
+                <span *ngSwitchCase="'entity'">Fahrzeug {{favorite.name}}</span>
+                <span *ngSwitchCase="'entity-record'">Fahrzeugaufnahme {{favorite.name}}</span>
+              </span>
+            </a>
+          </mat-nav-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6" [ngClass]="animateOnRouteEnter">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Fahrzeugtypen</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <thermo-chart-entity-kind></thermo-chart-entity-kind>
         </mat-card-content>
       </mat-card>
     </div>
@@ -38,53 +72,7 @@
               <h4 mat-line>Aufnahme 11.12.2017 08:55</h4>
               <p mat-line>vor 10 Minuten</p>
             </mat-list-item>
-            <mat-list-item>
-              <h4 mat-line>Aufnahme 11.12.2017 09:26</h4>
-              <p mat-line>vor 31 Minuten</p>
-            </mat-list-item>
-            <mat-list-item>
-              <h4 mat-line>Fahrzeugtyp DPZ</h4>
-              <p mat-line>vor 1 Stunde</p>
-            </mat-list-item>
-            <mat-list-item>
-              <h4 mat-line>Aufnahme 11.01.2018 01:43</h4>
-              <p mat-line>vor 1 Stunde</p>
-            </mat-list-item>
           </mat-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="col-md-6" [ngClass]="animateOnRouteEnter">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Fahrzeugtypen</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <thermo-chart-entity-kind></thermo-chart-entity-kind>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6" [ngClass]="animateOnRouteEnter">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Favoriten</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p *ngIf="favorites.length === 0">
-            No favorites added yet
-          </p>
-          <mat-nav-list>
-            <a mat-list-item [routerLink]="favorite.url" *ngFor="let favorite of favorites">
-              <span [ngSwitch]="favorite.type">
-                <span *ngSwitchCase="'record'">Aufnahme {{favorite.name | date:'dd.MM.yyyy hh:mm'}}</span>
-                <span *ngSwitchCase="'entity'">Fahrzeug {{favorite.name}}</span>
-                <span *ngSwitchCase="'entity-record'">Fahrzeugaufnahme {{favorite.name}}</span>
-              </span>
-            </a>
-          </mat-nav-list>
         </mat-card-content>
       </mat-card>
     </div>

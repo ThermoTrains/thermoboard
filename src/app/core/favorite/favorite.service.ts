@@ -11,13 +11,17 @@ export class FavoriteService {
   }
 
   addFavorite(url: string, name: string, type: string) {
+    if (this.favorites.some(f => f.url === url)) {
+      return;
+    }
+
     this.favorites.push(new Favorite(url, name, type));
     this.localStorageService.setItem('favorites', this.favorites);
   }
 
   removeFavorite(url: string) {
     const i = this.favorites.findIndex(f => f.url === url);
-    this.favorites.slice(i, 1);
+    this.favorites.splice(i, 1);
     this.localStorageService.setItem('favorites', this.favorites);
   }
 

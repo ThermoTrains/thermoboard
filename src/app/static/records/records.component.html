@@ -13,7 +13,9 @@
     <ng-container matColumnDef="favorite">
       <mat-header-cell *matHeaderCellDef>Favorit</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <thermo-add-favorite [url]="router.createUrlTree(['../record', element.id]).toString()"
+        <thermo-add-favorite [name]="element.timestamp"
+                             type="record"
+                             [url]="router.createUrlTree(['../record', element.id]).toString()"
                              inTable="true">
         </thermo-add-favorite>
       </mat-cell>
