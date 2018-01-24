@@ -26,17 +26,17 @@ export class ChartRecordHistogramComponent implements OnInit {
     }
 
     const counts = [];
-    this.chart.data.labels = [];
+    const days = [];
     this.chart.data.datasets[0].data = [];
 
     this._timestamps
-      .map(timestamp => moment(timestamp))
+      .map(timestamp => moment(timestamp).startOf('day'))
       .sort(function (left, right) {
         return left.diff(right);
       })
       .reduce((previous, current) => {
         if (current.diff(previous) > 0) {
-          this.chart.data.labels.push(current);
+          days.push(current);
           counts.push(1);
         } else {
           counts[counts.length - 1]++;
@@ -44,7 +44,7 @@ export class ChartRecordHistogramComponent implements OnInit {
         return current;
       }, moment('2010-01-01'));
 
-    this.chart.data.labels.forEach((day, i) => this.chart.data.datasets[0].data.push({
+    days.forEach((day, i) => this.chart.data.datasets[0].data.push({
       x: day,
       y: counts[i]
     }));
@@ -55,9 +55,9 @@ export class ChartRecordHistogramComponent implements OnInit {
   public ngOnInit(): void {
     this.canvasRef.nativeElement.getContext('2d');
     this.chart = new Chart(this.canvasRef.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
-        labels: [],
+        labels: false,
         datasets: [{
           data: [],
           fill: false,

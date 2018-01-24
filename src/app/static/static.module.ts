@@ -30,6 +30,10 @@ export class StaticModule {
 
 Chart.pluginService.register({
   afterDatasetsDraw: function (chartInstance) {
+    if (!chartInstance.options.showLabels) {
+      return;
+    }
+
     const ctx = chartInstance.ctx;
     chartInstance.data.datasets.forEach(function (dataset, i) {
       const meta = chartInstance.getDatasetMeta(i);

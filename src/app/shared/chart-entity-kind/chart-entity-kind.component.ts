@@ -30,6 +30,7 @@ export class ChartEntityKindComponent implements OnInit {
         }]
       },
       options: {
+        showLabels: true,
         responsive: true,
         legend: {
           display: false

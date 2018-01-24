@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="entityRecordsDataSource.data.length > 0">
     <div class="col-12" [ngClass]="animateOnRouteEnter">
       <mat-card>
         <mat-card-header>
