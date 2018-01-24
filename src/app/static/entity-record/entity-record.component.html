@@ -23,7 +23,7 @@
                 <div class="col-md-2"><strong>Zeitstempel</strong></div>
                 <div class="col-md-10">
                   <a [routerLink]="['../../record', entityRecord.record.id]" *ngIf="entityRecord">
-                    {{entityRecord.record.timestamp | date:'dd.MM.yyyy hh:mm'}}
+                    {{entityRecord.record.timestamp | date:'dd.MM.yyyy HH:mm'}}
                   </a>
                 </div>
               </div>

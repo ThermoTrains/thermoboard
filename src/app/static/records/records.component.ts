@@ -52,7 +52,7 @@ export class RecordsComponent implements AfterViewInit {
 
         // put filter properties onto the object
         copy.kinds = this.getKindList(copy);
-        copy.timestampFormatted = this.datePipe.transform(copy.timestamp, 'dd.MM.yyyy hh:mm');
+        copy.timestampFormatted = this.datePipe.transform(copy.timestamp, 'dd.MM.yyyy HH:mm');
         copy.timestampFormattedTime = 'T' + copy.timestampFormatted.split(' ')[1];
         console.log(copy.timestampFormattedTime);
         copy.placeName = copy.place.name;
