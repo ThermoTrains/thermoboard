@@ -8,23 +8,35 @@ import * as moment from 'moment';
   styleUrls: ['./chart-record-histogram.component.scss']
 })
 export class ChartRecordHistogramComponent implements OnInit {
+  _timestamps: string[];
   @Input() set timestamps(timestamps: string[]) {
-    if (!timestamps) {
+    this._timestamps = timestamps;
+    this.updateData();
+  }
+
+  @ViewChild('myCanvas') canvasRef: ElementRef;
+  chart: any;
+
+  constructor() {
+  }
+
+  updateData() {
+    if (!this._timestamps || !this.chart) {
       return;
     }
 
     const counts = [];
-    this.chart.labels = [];
+    this.chart.data.labels = [];
     this.chart.data.datasets[0].data = [];
 
-    timestamps
+    this._timestamps
       .map(timestamp => moment(timestamp))
       .sort(function (left, right) {
         return left.diff(right);
       })
       .reduce((previous, current) => {
         if (current.diff(previous) > 0) {
-          this.chart.labels.push(current);
+          this.chart.data.labels.push(current);
           counts.push(1);
         } else {
           counts[counts.length - 1]++;
@@ -32,18 +44,12 @@ export class ChartRecordHistogramComponent implements OnInit {
         return current;
       }, moment('2010-01-01'));
 
-    this.chart.labels.forEach((day, i) => this.chart.data.datasets[0].data.push({
+    this.chart.data.labels.forEach((day, i) => this.chart.data.datasets[0].data.push({
       x: day,
       y: counts[i]
     }));
 
     this.chart.update();
-  }
-
-  @ViewChild('myCanvas') canvasRef: ElementRef;
-  chart: any;
-
-  constructor() {
   }
 
   public ngOnInit(): void {
@@ -80,5 +86,9 @@ export class ChartRecordHistogramComponent implements OnInit {
         }
       }
     });
+
+    if (this.chart.data.labels.length === 0) {
+      this.updateData();
+    }
   }
 }
