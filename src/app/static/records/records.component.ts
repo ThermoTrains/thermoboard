@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 const RecordQuery: DocumentNode = gql`
 {
@@ -34,20 +35,27 @@ const RecordQuery: DocumentNode = gql`
   styleUrls: ['./records.component.scss']
 })
 export class RecordsComponent implements AfterViewInit {
-  displayedColumns = ['favorite', 'timestamp', 'place', 'kinds', 'actions'];
+  displayedColumns = ['favorite', 'timestamp', 'place', /*'kinds',*/ 'actions'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private apollo: Apollo,
-              private router: Router) {
+              private router: Router,
+              private datePipe: DatePipe) {
     this.apollo.watchQuery<any>({
       query: RecordQuery
     }).valueChanges.subscribe(({ data }) => {
       this.dataSource.data = data.Record.map(record => {
         const copy = { ...record };
+
+        // put filter properties onto the object
         copy.kinds = this.getKindList(copy);
+        copy.timestampFormatted = this.datePipe.transform(copy.timestamp, 'dd.MM.yyyy hh:mm');
+        copy.timestampFormattedTime = 'T' + copy.timestampFormatted.split(' ')[1];
+        console.log(copy.timestampFormattedTime);
+        copy.placeName = copy.place.name;
 
         return copy;
       });

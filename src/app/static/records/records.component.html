@@ -23,7 +23,7 @@
 
     <ng-container matColumnDef="timestamp">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Zeitstempel</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.timestamp | date:'dd.MM.yyyy hh:mm'}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.timestampFormatted}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="place">
@@ -33,9 +33,7 @@
 
     <ng-container matColumnDef="kinds">
       <mat-header-cell *matHeaderCellDef>Typen</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.kinds}}
-      </mat-cell>
+      <mat-cell *matCellDef="let element">{{element.kinds}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">

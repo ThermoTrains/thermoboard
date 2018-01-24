@@ -71,11 +71,20 @@ export class ChartRecordHistogramComponent implements OnInit {
         legend: {
           display: false
         },
+        animation: false, // disable inital and resize animation
+        hover: {
+          animationDuration: 0 // disable tooltip move animation
+        },
+        tooltips: {
+          intersect: false,
+          mode: 'nearest',
+        },
         scales: {
           xAxes: [{
             type: 'time',
             time: {
-              unit: 'week'
+              unit: 'week',
+              tooltipFormat: 'DD.MM.YYYY'
             }
           }],
           yAxes: [{
