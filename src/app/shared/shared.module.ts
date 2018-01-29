@@ -28,6 +28,7 @@ import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
 import { ChartRecordHistogramComponent } from './chart-record-histogram/chart-record-histogram.component';
 import { ChartEntityKindComponent } from './chart-entity-kind/chart-entity-kind.component';
 import { CategoryPipe } from './category/category.pipe';
+import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
   imports: [
@@ -65,6 +66,7 @@ import { CategoryPipe } from './category/category.pipe';
     ChartRecordHistogramComponent,
     ChartEntityKindComponent,
     CategoryPipe,
+    TimestampPipe,
   ],
   exports: [
     CommonModule,
@@ -99,12 +101,14 @@ import { CategoryPipe } from './category/category.pipe';
     ChartRecordHistogramComponent,
     ChartEntityKindComponent,
     CategoryPipe,
+    TimestampPipe,
   ],
   entryComponents: [
     ValueImageDialogComponent,
   ],
   providers: [
     DatePipe,
+    TimestampPipe,
   ],
 })
 export class SharedModule {

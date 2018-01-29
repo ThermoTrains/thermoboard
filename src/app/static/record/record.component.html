@@ -21,7 +21,7 @@
             <mat-card-content>
               <div class="row">
                 <div class="col-md-2"><strong>Zeitstempel</strong></div>
-                <div class="col-md-10">{{record && record.timestamp | date:'dd.MM.yyyy HH:mm'}}</div>
+                <div class="col-md-10">{{record && record.timestamp | timestamp}}</div>
               </div>
               <div class="row" *ngIf="record && record.place">
                 <div class="col-md-2"><strong>Ort</strong></div>

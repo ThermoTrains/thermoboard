@@ -31,7 +31,7 @@
           <mat-nav-list>
             <a mat-list-item [routerLink]="favorite.url" *ngFor="let favorite of favorites">
               <span [ngSwitch]="favorite.type">
-                <span *ngSwitchCase="'record'">Aufnahme {{favorite.name | date:'dd.MM.yyyy hh:mm'}}</span>
+                <span *ngSwitchCase="'record'">Aufnahme {{favorite.name | timestamp}}</span>
                 <span *ngSwitchCase="'entity'">Fahrzeug {{favorite.name}}</span>
                 <span *ngSwitchCase="'entity-record'">Fahrzeugaufnahme {{favorite.name}}</span>
               </span>

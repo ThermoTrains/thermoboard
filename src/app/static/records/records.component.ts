@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { TimestampPipe } from '@app/shared/timestamp.pipe';
 
 const RecordQuery: DocumentNode = gql`
 {
@@ -43,7 +43,7 @@ export class RecordsComponent implements AfterViewInit {
 
   constructor(private apollo: Apollo,
               private router: Router,
-              private datePipe: DatePipe) {
+              private timestampPipe: TimestampPipe) {
     this.apollo.watchQuery<any>({
       query: RecordQuery
     }).valueChanges.subscribe(({ data }) => {
@@ -52,9 +52,8 @@ export class RecordsComponent implements AfterViewInit {
 
         // put filter properties onto the object
         copy.kinds = this.getKindList(copy);
-        copy.timestampFormatted = this.datePipe.transform(copy.timestamp, 'dd.MM.yyyy HH:mm');
+        copy.timestampFormatted = this.timestampPipe.transform(copy.timestamp);
         copy.timestampFormattedTime = 'T' + copy.timestampFormatted.split(' ')[1];
-        console.log(copy.timestampFormattedTime);
         copy.placeName = copy.place.name;
 
         return copy;

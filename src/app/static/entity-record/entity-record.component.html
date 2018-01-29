@@ -23,7 +23,7 @@
                 <div class="col-md-2"><strong>Zeitstempel</strong></div>
                 <div class="col-md-10">
                   <a [routerLink]="['../../record', entityRecord.record.id]" *ngIf="entityRecord">
-                    {{entityRecord.record.timestamp | date:'dd.MM.yyyy HH:mm'}}
+                    {{entityRecord.record.timestamp | timestamp}}
                   </a>
                 </div>
               </div>
@@ -52,7 +52,7 @@
               </div>
               <div class="row">
                 <div class="col-md-2"><strong>Instandsetzung</strong></div>
-                <div class="col-md-10">{{entityRecord && entityRecord.entity.exists_since | date:'dd.MM.yyyy'}}</div>
+                <div class="col-md-10">{{entityRecord && entityRecord.entity.exists_since | timestamp:'dd.MM.yyyy'}}</div>
               </div>
             </mat-card-content>
           </mat-card>

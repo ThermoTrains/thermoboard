@@ -29,7 +29,7 @@
               </div>
               <div class="row">
                 <div class="col-md-2"><strong>Instandsetzung</strong></div>
-                <div class="col-md-10">{{entity && entity.exists_since | date:'dd.MM.yyyy'}}</div>
+                <div class="col-md-10">{{entity && entity.exists_since | timestamp:'dd.MM.yyyy'}}</div>
               </div>
               <div class="row">
                 <div class="col-md-2"><strong>Typ</strong></div>
@@ -69,7 +69,7 @@
                   <mat-header-cell *matHeaderCellDef>Zeitstempel</mat-header-cell>
                   <mat-cell *matCellDef="let element">
                     <a [routerLink]="['../../record', element.record.id]">
-                      {{element.record.timestamp | date:'dd.MM.yyyy HH:mm'}}
+                      {{element.record.timestamp | timestamp}}
                     </a>
                   </mat-cell>
                 </ng-container>

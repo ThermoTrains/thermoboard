@@ -38,7 +38,7 @@
 
     <ng-container matColumnDef="exists_since">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Instandsetzung</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.exists_since | date:'dd.MM.yyyy'}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.exists_since | timestamp:'dd.MM.yyyy'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
