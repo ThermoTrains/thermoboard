@@ -25,6 +25,8 @@ export class ValueImageDialogComponent implements OnInit {
   private tooltip = null;
   private temperatureScale: number = null;
   private temperatureOffset: number = null;
+  private prevMouseX: number;
+  private prevMouseY: number;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -120,7 +122,9 @@ export class ValueImageDialogComponent implements OnInit {
   }
 
   onMousewheel(event: MouseWheelEvent) {
-    this.zoom = event.wheelDeltaY > 0
+    const wheelDeltaY = event.wheelDeltaY || event.wheelDelta;
+
+    this.zoom = wheelDeltaY > 0
       ? this.zoom + 1
       : this.zoom - 1;
 
@@ -135,11 +139,11 @@ export class ValueImageDialogComponent implements OnInit {
     }
 
     const centerX = this.canvasRef.nativeElement.width / 2;
-    this.positionX = event.wheelDeltaY > 0
+    this.positionX = wheelDeltaY > 0
       ? this.positionX - centerX
       : this.positionX + centerX;
 
-    this.positionY = event.wheelDeltaY > 0
+    this.positionY = wheelDeltaY > 0
       ? this.positionY - (this.canvasRef.nativeElement.height / this.ratio / 2)
       : this.positionY + (this.canvasRef.nativeElement.height / this.ratio / 2);
 
@@ -160,8 +164,11 @@ export class ValueImageDialogComponent implements OnInit {
       return;
     }
 
-    this.positionX += event.movementX;
-    this.positionY += event.movementY;
+    this.positionX += this.prevMouseX ? event.screenX - this.prevMouseX : 0;
+    this.positionY += this.prevMouseY ? event.screenY - this.prevMouseY : 0;
+
+    this.prevMouseX = event.screenX;
+    this.prevMouseY = event.screenY;
 
     this.drawImage();
   }
