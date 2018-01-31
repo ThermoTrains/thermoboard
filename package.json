@@ -29,7 +29,7 @@
     "@ngrx/store": "^4.1.1",
     "apollo-angular": "^1.0.1",
     "apollo-angular-link-http": "^1.0.1",
-    "apollo-cache-inmemory": "^1.1.6",
+    "apollo-cache-inmemory": "^1.1.5",
     "apollo-client": "^2.2.1",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.1",
