@@ -152,6 +152,8 @@ export class ValueImageDialogComponent implements OnInit {
 
   onMouseDown() {
     this.dragging = true;
+    this.prevMouseX = null;
+    this.prevMouseY = null;
   }
 
   @HostListener('window:mousemove', ['$event'])
